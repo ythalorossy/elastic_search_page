@@ -1,0 +1,95 @@
+<div class="header-wrapper">
+    <div class="navigation-wrapper">
+        <div class="container">
+                <div class="nav-bar">
+                    <div class="navbar-brand">
+                        <a class="hidden-xs" id="elastic-logo" href="/">
+                            <img src="images/elastic-logo.svg" alt="elastic-logo">
+                        </a>
+                    </div>                
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="main-container">
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4" id="right_col">
+
+                    <form class="user-form-wrapper" >
+                        <div class="flexContainer">
+                            <input class="search-box" type="text" name="query_term"
+                                        placeholder="Search..." value="{{params.query_term}}" />                                
+                        </div>
+
+                        <div class="categories">                           
+                            <label><b>Categories</b></label>
+                            <div class="checkbox-categories">    
+                                <ul>
+                                    {{#eachCheckbox "categories" "category" qres.categories params.categories}}
+                                    {{this.category}} ({{this.count}})
+                                    {{/eachCheckbox}}
+                                </ul>
+                            </div>    
+                        </div>
+
+                        <div class="select-dates">
+                            <label><b>Dates</b> (yyyy-MM-dd)</label>
+                            <br />
+                            <div class="date-input">
+                            from:&nbsp<input type="text" name="start_date" 
+                                         value="{{params.start_date}}">
+                            </div>
+                            <div class="date-input">
+                            to:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="end_date"
+                                       value="{{params.end_date}}"><br />
+                            </div>
+
+                        </div>   
+                        <div>
+                        <label><b>Sort by: </b></label>
+                            <select name="sort">
+                                {{#select params.sort}}
+                                <option value="publish_date-desc">Date Desc</option>
+                                <option value="publish_date-asc">Date Asc</option>
+                                <option value="category-asc">Category Asc</option>
+                                <option value="category-desc">Category Desc</option>
+                                {{/select}}
+                            </select>
+                        </div>
+                        <div class="search-button">
+                           <input type="image" alt="Search Button" src="images/icon-nav-search.svg" value="Submit" />
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-xs-12 col-sm-8 col-md-8 guide-section">
+                    <div class="bdr-btm m-b-15 clearfix">
+                        <div class="pull-right">
+                            <p class="search-count">There are {{qres.total}} results for "{{params.query_term}}"</p>
+                        </div>
+                    </div>
+                    <div class="div-results">
+                    {{#each qres.blogs}}
+                    <div class="each-result"> <!-- {{@key}}:{{this}} -->
+                        <h4>
+                            <a href="https://www.elastic.co{{this.url}}" target="_blank">
+                                {{this.title}}
+                            </a>
+                                    </h4>
+                                    <p class="text-left text-success">{{this.publish_date}} <span class="text-muted">[{{this.category}}]<span></p>
+                                                <p class="text-left">{{{trimString this.content}}}</p>
+                    </div>
+                    {{/each}}
+                    </div>
+                    <div class="light-theme simple-pagination clearfix m-b-60">
+                        {{#eachPage qres.total params}}
+                        {{/eachPage}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

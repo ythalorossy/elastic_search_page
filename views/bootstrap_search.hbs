@@ -1,0 +1,64 @@
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <img src="images/elastic-logo.svg" width="40%">
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul>
+            <form class="navbar-form navbar-right">
+            <input type="text" name="query_term" placeholder="Search..."
+                   value="{{query_term}}">
+            <input type="submit" value="Q">
+            <br>
+            <li><b>Categories</b></li>
+            {{#eachCheckbox "categories" qres.aggregations.all.categories.buckets categories}}
+              {{this.key}} ({{this.doc_count}})
+            {{/eachCheckbox}}
+            <br>
+            <li><b>Dates</b> (dd/mm/yyyy)</li>
+              from: <input type="text" name="start_date" placeholder="22/12/2016"
+                           value="{{start_date}}"></br>
+              to: <input type="text" name="end_date" placeholder="22/12/2016"
+                         value="{{end_date}}"></br>
+          </form>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <p class="text-muted text-left">
+            There are {{qres.hits.total.value}} results for "{{query_term}}" ({{qres.took}} miliseconds)
+          </p>
+          {{#each qres.hits.hits}}
+            <div class="row placeholders">
+              <!-- {{@key}}:{{this}} -->
+              <h4 class="text-left">
+                <a href="https://www.elastic.co{{this._source.url}}" target="_blank">{{this._source.title}}</a> <span class="text-muted">[{{this._source.category}}]<span> 
+              </h4>
+              <p class="text-left text-success">{{this._source.date}}</p>
+              <p class="text-left">{{{this.highlight.content}}}</p>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+
+    <nav aria-label="Page navigation example">
+      <div class="pagination">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+      </div>
+    </nav>

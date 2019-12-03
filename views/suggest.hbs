@@ -1,0 +1,2 @@
+{{!-- {{this template converts the Json result of an elasticsearch suggest to a raw JSON array which JQuery uses to populate the autocomplete}} --}}
+[{{#each qres.suggest.my_suggestion}}{{#each this.options}}"{{this.text}}"{{#unless @last}},{{/unless}}{{/each}}{{/each}}]

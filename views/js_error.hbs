@@ -1,0 +1,21 @@
+This is an error page. It has a javascript dummy code that will generate an unhandled exception.
+<script>
+  function f (n) {
+    return a.n * n;
+  }
+
+  function x (s) {
+    if (isNaN(s)) {
+      return f(0);
+    } else {
+      f(s*0);
+    }
+    return 1;
+  }
+
+  function b () {
+    return x(10);
+  }
+
+  document.write(b());
+</script>
