@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "elastic-apm-node": "^1.13.0",
