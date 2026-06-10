@@ -3,7 +3,7 @@
         <div class="container">
                 <div class="nav-bar">
                     <div class="navbar-brand">
-                        <a class="hidden-xs" id="elastic-logo" href="/">
+                        <a class="d-none d-sm-block" id="elastic-logo" href="/">
                             <img src="images/elastic-logo.svg" alt="elastic-logo">
                         </a>
                     </div>                
@@ -16,7 +16,7 @@
     <div class="content-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-4 col-md-4" id="right_col">
+                <div class="col-12 col-sm-4 col-md-4" id="right_col">
 
                     <form class="user-form-wrapper" id="search_form">
                          <div class="flexContainer">
@@ -66,9 +66,9 @@
                 </div>
 
 
-                <div class="col-xs-12 col-sm-8 col-md-8 guide-section">
-                    <div class="bdr-btm m-b-15 clearfix">
-                        <div class="pull-right">
+                <div class="col-12 col-sm-8 col-md-8 guide-section">
+                    <div >
+                        <div class="float-end">
                             <p class="search-count">There are {{qres.hits.total.value}} results for "{{params.query_term}}" ({{qres.took}}
                         milliseconds)</p>
                         </div>
@@ -82,8 +82,8 @@
                             </a>
                             <span class="text-muted"> [ _score: {{this._score}} ]<span> 
                                     </h4>
-                                    <p class="text-left text-success">{{this._source.date}} <span class="text-muted">[{{this._source.category}}]<span></p>
-                                                <p class="text-left">{{{this.highlight.content}}}</p>
+                                    <p class="text-start text-success">{{this._source.date}} <span class="text-muted">[{{this._source.category}}]<span></p>
+                                                <p class="text-start">{{{this.highlight.content}}}</p>
                     </div>
                     {{/each}}
                     </div>
